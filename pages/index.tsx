@@ -1,86 +1,63 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Counter from "../components/Counter";
+import { FaFacebookSquare, FaPinterest, FaInstagram } from "react-icons/fa";
 
 const Home: NextPage = () => {
+  const [timeLeft, setTimeLeft] =
+    useState(1209600); /*14days*24hours*3600seconds*/
+  let timerId: ReturnType<typeof setTimeout>;
+  useEffect(() => {
+    timerId = setInterval(() => {
+      setTimeLeft((timeLeft) => timeLeft - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [timeLeft]);
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Launch Countdown Timer</title>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="./images/favicon-32x32.png"
+        />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
+      <main className=" bg-veryDarkBlue flex text-sm w-full flex-1 flex-col  items-center text-center background ">
+        <h1 className=" mt-40 sm:mt-32 mb-16 sm:mb-24 text-2xl tracking-wider text-white">
+          WE'RE LAUNCHING SOON
         </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <Counter timeLeft={timeLeft} />
+        <div className="flex hillsBackgroud gap-8 mt-40 sm:mt-36 h-44 sm:h-52 w-full justify-center items-center text-3xl text-grayishBleu">
+          {" "}
+          <FaFacebookSquare className=" hover:text-softRed cursor-pointer background" />
+          <FaPinterest className="hover:text-softRed  cursor-pointer  " />
+          <FaInstagram className="hover:text-softRed cursor-pointer " />
         </div>
       </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
+      <div role="contentinfo" className="attribution">
+        Challenge by{" "}
         <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://www.frontendmentor.io?ref=challenge"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          Frontend Mentor
         </a>
-      </footer>
+        . Coded by{" "}
+        <a href="https://adelinked.netlify.app" rel="noreferrer">
+          Adelinked
+        </a>
+        .
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

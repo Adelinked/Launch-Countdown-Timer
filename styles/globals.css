@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.background {
+  /*@layer darkDesaturatedBlue;*/
+  @apply bg-stars;
+}
+
+.numbersOuterContainer {
+  @apply relative h-[50%] bg-darkDesaturatedBlue rounded-md;
+}
+
+.numbersInnerContainer {
+  @apply text-softRed w-[60%] text-center text-4xl absolute  left-[13px] flex gap-[2px];
+}
+
+.rotateTop {
+  transform-origin: 50% 100%;
+  transform: rotate3d(1, 0, 0, -180deg);
+}
+
+.rotateBottom {
+  transform-origin: 50% 0%;
+  transform: rotate3d(1, 0, 0, 90deg);
+}
+
+.hillsBackgroud {
+  background-image: url("/images/pattern-hills.svg");
+  background-size: 100% 100%;
+}
+
+.topOpacity {
+  opacity: 60%;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media (max-width: 375px) {
+  .hillsBackgroud {
+    background-size: 220% 100%;
+  }
+}
