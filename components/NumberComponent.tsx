@@ -17,12 +17,11 @@ const NumberComponent = ({
     const element = document.getElementById(id);
     if (!element) return;
     const rotateClass = top ? "rotateTop" : "rotateBottom";
-    element.classList.add(rotateClass);
 
     const numbersDiv = element.firstChild as HTMLDivElement | null;
     if (!numbersDiv) return;
     numbersDiv.style.display = "none";
-
+    element.classList.add(rotateClass);
     setTimeout(() => {
       element.classList.remove(rotateClass);
       if (!numbersDiv) return;
@@ -33,13 +32,15 @@ const NumberComponent = ({
   return (
     <div
       className={`numbersOuterContainer test duration-300  ${
-        top ? "mb-[0.04rem] topOpacity" : ""
+        top ? "mb-[0.04rem] topOpacity" : "blackShadow"
       }`}
       id={`${top ? "top" : "bottom"}Numbers${title}`}
     >
       <div
         className={`numbersInnerContainer ${
-          top ? "bottom-[-21px]" : "top-[-21px]"
+          top
+            ? "bottom-[-21px] lg:bottom-[-30px]"
+            : "top-[-21px] lg:top-[-30px]"
         }`}
       >
         <span className={`${top ? "topOpacity" : ""} w-[50%]`}>{time[0]}</span>

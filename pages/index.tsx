@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Counter from "../components/Counter";
 import { FaFacebookSquare, FaPinterest, FaInstagram } from "react-icons/fa";
@@ -11,6 +10,9 @@ const Home: NextPage = () => {
   let timerId: ReturnType<typeof setTimeout>;
   useEffect(() => {
     timerId = setInterval(() => {
+      if (timeLeft === 0) {
+        return;
+      }
       setTimeLeft((timeLeft) => timeLeft - 1);
     }, 1000);
     return () => {
@@ -21,6 +23,11 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>Launch Countdown Timer</title>
+        <meta
+          name="description"
+          content="Asolution to Launch Countdown Timer frontend mentor challenge"
+        />
+
         <link
           rel="icon"
           type="image/png"
@@ -29,8 +36,8 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className=" bg-veryDarkBlue flex text-sm w-full flex-1 flex-col  items-center text-center background ">
-        <h1 className=" mt-40 sm:mt-32 mb-16 sm:mb-24 text-2xl tracking-wider text-white">
+      <main className=" bg-veryDarkBlue  flex text-sm w-full  flex-1 flex-col  items-center text-center background ">
+        <h1 className=" mt-40 sm:mt-32 mb-16 sm:mb-24 text-2xl lg:text-3xl tracking-wider text-white">
           WE'RE LAUNCHING SOON
         </h1>
         <Counter timeLeft={timeLeft} />

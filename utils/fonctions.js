@@ -6,7 +6,7 @@ export const devideTime = (timeLeft) => {
 
   const represent = (time) => time >= 10 ? time : "0" + time;
 
-  days = Math.floor(localtTimeLeft / (24 * 3600));
+  days = represent(Math.floor(localtTimeLeft / (24 * 3600)));
   localtTimeLeft -= 24 * 3600 * days;
   hours = represent(Math.floor(localtTimeLeft / 3600));
   localtTimeLeft -= hours * 3600;

@@ -12,9 +12,11 @@
 }
 
 .numbersInnerContainer {
-  @apply text-softRed w-[60%] text-center text-4xl absolute  left-[13px] flex gap-[2px];
+  @apply text-softRed w-[60%] text-center text-4xl lg:text-6xl absolute left-[13px] lg:left-[28px] flex gap-[2px];
 }
-
+.blackShadow {
+  box-shadow: 0 6px 2px rgba(0, 0, 0, 0.9);
+}
 .rotateTop {
   transform-origin: 50% 100%;
   transform: rotate3d(1, 0, 0, -180deg);
@@ -35,7 +37,7 @@
 }
 
 .attribution {
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
 }
 .attribution a {
