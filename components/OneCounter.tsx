@@ -1,3 +1,4 @@
+import { memo } from "react";
 import NumberComponent from "./NumberComponent";
 
 interface OneCounterProps {
@@ -7,7 +8,7 @@ interface OneCounterProps {
 const OneCounter = ({ title, time }: OneCounterProps): JSX.Element => {
   return (
     <div className="flex flex-col ">
-      <div className="w-[70px] h-[70px] lg:w-[150px] lg:h-[150px] bg-veryDarkBlue2   ">
+      <div className="w-[70px] h-[70px] lg:w-[150px] lg:h-[150px] bg-veryDarkBlue2 ">
         <NumberComponent title={title} time={time} top />
         <NumberComponent title={title} time={time} />
       </div>
@@ -18,4 +19,7 @@ const OneCounter = ({ title, time }: OneCounterProps): JSX.Element => {
   );
 };
 
-export default OneCounter;
+export default memo(
+  OneCounter,
+  (prevComp, nextComp) => prevComp.time === nextComp.time
+);

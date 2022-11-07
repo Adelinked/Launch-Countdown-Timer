@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { devideTime } from "../utils/fonctions";
 import OneCounter from "./OneCounter";
 
-interface CounterProps {
-  timeLeft: Number;
-}
-
-const Counter = ({ timeLeft }: CounterProps) => {
+const Counter = () => {
+  const [timeLeft, setTimeLeft] =
+    useState(1209600); /*14days*24hours*3600seconds*/
+  let timerId: ReturnType<typeof setTimeout>;
+  useEffect(() => {
+    timerId = setInterval(() => {
+      if (timeLeft === 0) {
+        return;
+      }
+      setTimeLeft((timeLeft) => timeLeft - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [timeLeft]);
   let timeHolder = devideTime(timeLeft);
   return (
     <div className="flex items-center gap-4">
