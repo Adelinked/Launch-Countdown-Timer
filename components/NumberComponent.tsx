@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface NumberComponentProps {
   title: String;
@@ -11,10 +11,9 @@ const NumberComponent = ({
   time,
   top,
 }: NumberComponentProps): JSX.Element => {
+  const flip = useRef(null);
   useEffect(() => {
-    const id = (top ? "top" : "bottom") + "Numbers" + title;
-
-    const element = document.getElementById(id);
+    const element = flip.current as HTMLDivElement | null;
     if (!element) return;
     const rotateClass = top ? "rotateTop" : "rotateBottom";
 
@@ -35,6 +34,7 @@ const NumberComponent = ({
         top ? "mb-[0.04rem] topOpacity" : "blackShadow"
       }`}
       id={`${top ? "top" : "bottom"}Numbers${title}`}
+      ref={flip}
     >
       <div
         className={`numbersInnerContainer ${
